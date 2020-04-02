@@ -3,9 +3,16 @@ const mongoose = require('mongoose');
 const Chat = require('../model/chat');
 const router = express.Router();
 
+const io = require('socket.io-client');
+
+const socket = io('http://localhost:3000');
+
 router.post('/' , async (req , res)=>{
+    console.log("data  aya" ,req.body );
     let chat = new Chat(req.body);
     chat.save();
+    console.log("chat" , chat);
+    socket.emit("chat" , chat );
     res.setHeader("Content-Type", "application/json");
     res.statusCode = 200;
     res.json(chat);

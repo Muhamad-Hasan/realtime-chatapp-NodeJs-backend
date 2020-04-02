@@ -32,6 +32,10 @@ const chat = new Schema({
     image:{
         type:String
     },
+    sender_id : {
+        type:mongoose.Types.ObjectId,
+        ref:"user"
+    }
 
 });
 

@@ -11,9 +11,11 @@ app.use(express.json());
 
 io.on('connection', function (socket) {
 	console.log("user connected");
-	socket.on('post' , async(data)=>{
-		//let post = await Post.find(); 
-		socket.broadcast.emit('update', post)
+	socket.on('chat' , async(data)=>{
+		//let post = await Post.find();
+		console.log("datat" , data) 
+		console.log("chat agage------------------");
+		socket.broadcast.emit('update_chat' , data )
 	})
 	socket.on('comment' , async(data)=>{
 		// let post = await Post.find(); 
